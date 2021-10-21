@@ -1,9 +1,9 @@
 import { injectable } from "tsyringe";
-import { IUser, IUserLocalService } from "../interfaces";
+import { IUser, UserService } from "../interfaces";
 import { UserRepository } from "../repositories/user.repository";
 
 @injectable()
-export class UserDBService implements IUserLocalService {
+export class UserDBService implements UserService {
   users: IUser[] = [];
   repository: any;
 

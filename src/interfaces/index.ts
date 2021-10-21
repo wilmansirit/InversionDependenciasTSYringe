@@ -1,2 +1,2 @@
 export * from './IUser';
-export * from './IUserService'
+export * from './UserService.interface'

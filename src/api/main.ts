@@ -1,22 +1,20 @@
-import { inject, injectable } from "tsyringe";
-import { IUser } from "../interfaces";
-import { UserDBService, UserInternetService, UserLocalService } from "../services";
+import { injectable } from "tsyringe";
+import { IUser, UserService } from "../interfaces";
 
 @injectable()
 export class Main {
-    
-  users: IUser[] = [];
+  
+  private users: IUser[] = [];
 
-  constructor(@inject(UserLocalService) private userLocalService: UserLocalService)
- {
+  constructor(private userService: UserService) {
     this.logger();
   }
 
-  async getUsers(): Promise<IUser[]> {
-    return this.userLocalService.getUsers();
+  private async getUsers(): Promise<IUser[]> {
+    return this.userService.getUsers();
   }
 
-  logger() {
+  private logger() {
     this.getUsers()
       .then((users) => console.log(users))
       .catch((err) => console.log(err));

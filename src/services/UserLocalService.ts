@@ -1,9 +1,9 @@
 import {promises as fs} from 'fs'
 import { injectable } from 'tsyringe';
-import { IUser, IUserLocalService } from "../interfaces";
+import { IUser, UserService } from "../interfaces";
 
 @injectable()
-export class UserLocalService implements IUserLocalService {
+export class UserLocalService implements UserService {
 
     users: IUser[] = []
     usersFile: string = `${__dirname}/../../users.json`;
