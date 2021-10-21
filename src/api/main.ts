@@ -1,4 +1,4 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { IUser, UserService } from "../interfaces";
 
 @injectable()
@@ -6,7 +6,7 @@ export class Main {
   
   private users: IUser[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(@inject("UserService") private userService: UserService) {
     this.logger();
   }
 

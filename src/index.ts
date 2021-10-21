@@ -1,4 +1,55 @@
-import "reflect-metadata";
+
+import 'reflect-metadata';
+import { container } from 'tsyringe';
+import { userDBServiceContainer, userLocalServiceContainer, userInternetServiceContainer } from './api/containers';
+import { Main } from './api/main';
+
+
+
+userDBServiceContainer.resolve(Main);
+userLocalServiceContainer.resolve(Main);
+userInternetServiceContainer.resolve(Main);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import "reflect-metadata";
 import { container } from "tsyringe";
 import { Main } from "./api/main";
 import { UserDBService, UserInternetService, UserLocalService } from "./services";
@@ -15,5 +66,5 @@ import { userDBServiceContainer, userInternetServiceContainer, userLocalServiceC
 
 // const main = container.resolve(Main)
 
-const api = new Main(userDBServiceContainer);
+const api = new Main(userDBServiceContainer); */
 
