@@ -1,4 +1,4 @@
-import { createConnection, Connection } from "typeorm";
+import { createConnection } from "typeorm";
 import { User } from "../entity/User";
 
 export class UserRepository {
