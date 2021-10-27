@@ -1,5 +1,4 @@
 import { injectable, inject } from "tsyringe";
-import { User } from "../entity/User";
 import { IUser, UserService } from "../interfaces";
 import { UserRepository } from "../repositories/user.repository";
 
