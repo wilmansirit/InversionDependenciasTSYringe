@@ -3,11 +3,17 @@ import {
   userDBServiceContainer,
   userLocalServiceContainer,
   userInternetServiceContainer,
-  userDBRepositoryContainer,
+  databaseConnectionContainer,
 } from "./api/containers";
 import { Main } from "./api/main";
-// import { UserDBService } from './services';
+import { DatabaseConnection } from "./database";
 
 // userLocalServiceContainer.resolve(Main);
-userDBServiceContainer.resolve(Main);
 // userInternetServiceContainer.resolve(Main);
+userDBServiceContainer.resolve(Main);
+
+const connection = databaseConnectionContainer.resolve(DatabaseConnection);
+
+console.log(connection);
+
+connection.closeConnection();

@@ -3,7 +3,7 @@ import { ConnectionOptions } from 'typeorm';
 
 dotenv.config()
 
-export const databaseConfiguration: ConnectionOptions = {
+export const DatabaseConfiguration: ConnectionOptions = {
   type: "mongodb",
   host: process.env.TYPEORM_HOST,
   port: 27017,

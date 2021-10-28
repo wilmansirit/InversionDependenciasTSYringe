@@ -1,34 +1,24 @@
+import { inject, singleton } from "tsyringe";
 import { Connection, ConnectionOptions, createConnection } from "typeorm";
+import { DatabaseConnectionInterfase } from "../interfaces/databaseConnection.interfase";
 
-export class DatabaseConnection {
+@singleton()
+export class DatabaseConnection implements DatabaseConnectionInterfase {
+  // Declaration
+  connection: Connection;
 
-    // Declaration
-    private static connect: DatabaseConnection;
-    private connection: Connection;
-    private configuration: ConnectionOptions;
+  constructor(
+    @inject("databaseConfiguration")
+    private databaseConfiguraction: ConnectionOptions
+  ) {}
 
-    private constructor() { };
+  public async getConnection(): Promise<Connection> {
+    this.connection = await createConnection(this.databaseConfiguraction);
 
-    public static setConnection(): DatabaseConnection {
+    return this.connection;
+  }
 
-        if (DatabaseConnection.connect == null) {
-            DatabaseConnection.connect = new DatabaseConnection()
-        }
-
-        return DatabaseConnection.connect;
-    }
-
-    public async getConnection(databaseConfiguration: ConnectionOptions): Promise<Connection> {
-
-        this.configuration = databaseConfiguration as any
-        
-        this.connection = await createConnection(this.configuration);
-
-        return this.connection;
-
-    }
-
-    public closeConnection() {
-        this.connection.close();
-    }
+  public closeConnection() {
+    console.log(this.connection);
+  }
 }
