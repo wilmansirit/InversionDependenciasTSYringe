@@ -12,12 +12,13 @@ export class Main {
   }
 
   private async getUsers(): Promise<IUser[]> {
-    return this.userService.getUsers();
+    this.users =  await this.userService.getUsers();
+    return this.users
   }
 
   private logger() {
     this.getUsers()
-      .then((users) => console.log(users))
+      .then(users => console.log(users))
       .catch((err) => console.log(err));
   }
 }

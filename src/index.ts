@@ -17,7 +17,7 @@ userDBServiceContainer.resolve(Main);
 const connection = databaseConnectionContainer.resolve(DatabaseConnection);
 
 
-console.log(connection);
+// console.log(connection);
 
 // connection.closeConnection();
 
