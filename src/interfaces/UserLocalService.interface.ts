@@ -1,6 +1,6 @@
 import { IUser } from "./IUser";
 
-export interface UserService {
+export interface UserLocalServiceInterface {
 
   getUsers(): Promise<IUser[]>;
   

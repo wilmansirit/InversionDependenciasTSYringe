@@ -1,2 +1,3 @@
-export * from './databaseConfiguration';
-export * from './databaseConnection';
+// export * from './databaseConfiguration';
+export { DatabaseConfiguration } from "./databaseConfiguration";
+export { default as DatabaseConnection } from "./databaseConnection";

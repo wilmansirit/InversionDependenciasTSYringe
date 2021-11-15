@@ -1,6 +1,6 @@
 import { Connection, ConnectionOptions } from "typeorm";
 
-export interface DatabaseConnectionInterfase {
+export interface DatabaseConnectionInterface {
   connection: Connection;
 
   getConnection(): Promise<Connection>;

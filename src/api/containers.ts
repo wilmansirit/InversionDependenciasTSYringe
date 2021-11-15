@@ -1,5 +1,7 @@
 import { container } from "tsyringe";
+import { ConnectionOptions } from "typeorm";
 import { DatabaseConfiguration, DatabaseConnection } from "../database";
+import { DatabaseConnectionInterface } from "../interfaces";
 import { UserRepository } from "../repositories/user.repository";
 import {
   UserDBService,
@@ -7,6 +9,10 @@ import {
   UserLocalService,
 } from "../services";
 
+// re-export the container, so people must import this file
+// and not accidentally get `container' directly from tsyringe
+// https://dev.to/leehambley/using-tsyringe-for-dependency-injection-without-using-the-class-syntax-29h7
+export { container };
 
 // Services
 export const userLocalServiceContainer = container
@@ -19,12 +25,19 @@ export const userDBServiceContainer = container
 
 export const userInternetServiceContainer = container
   .createChildContainer()
-  .register("UserService", { useClass: UserInternetService });
+  .register<UserInternetService>("UserService", { useClass: UserInternetService });
+
 
 // Repositories
-export const userDBRepositoryContainer = container.register("UserRepository", {useClass: UserRepository,});
-
+export const userDBRepositoryContainer = container.register("UserRepository", {
+  useClass: UserRepository,
+});
 
 // Database
-export const databaseConnectionContainer = container.register("databaseConnection", {useClass: DatabaseConnection})
-export const databaseConfigurationContainer = container.register("databaseConfiguration", {useValue: DatabaseConfiguration});
+export { DatabaseConnection };
+container.register<DatabaseConnectionInterface>("DatabaseConnection", { useClass: DatabaseConnection })
+
+export { DatabaseConfiguration };
+container.register<ConnectionOptions>("DatabaseConfiguration", {
+  useValue: DatabaseConfiguration,
+});

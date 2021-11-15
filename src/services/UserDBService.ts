@@ -1,16 +1,16 @@
 import { injectable, inject } from "tsyringe";
-import { IUser, UserService } from "../interfaces";
-import { UserRepository } from "../repositories/user.repository";
+import { IUser, UserDBServiceInterface, UserRepositoryInterface} from "../interfaces";
+
 
 @injectable()
-export class UserDBService implements UserService {
+export class UserDBService implements UserDBServiceInterface {
   users: IUser[];
 
   constructor(
-    @inject("UserRepository") private userRepository: UserRepository
+    @inject("UserRepository") private userRepository: UserRepositoryInterface
   ) {}
 
-  async getUsers(): Promise<IUser[]> {
+  async getAllUsers(): Promise<IUser[]> {
     this.users = await <any>this.userRepository.list();
     return this.users;
   }

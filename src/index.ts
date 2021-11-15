@@ -3,21 +3,16 @@ import {
   userDBServiceContainer,
   userLocalServiceContainer,
   userInternetServiceContainer,
-  databaseConnectionContainer,
-  databaseConfigurationContainer,
 } from "./api/containers";
 import { Main } from "./api/main";
-import { DatabaseConnection } from "./database";
 
 
 // userLocalServiceContainer.resolve(Main);
 // userInternetServiceContainer.resolve(Main);
 userDBServiceContainer.resolve(Main);
 
-const connection = databaseConnectionContainer.resolve(DatabaseConnection);
-
-
+// const connection = databaseConnectionContainer.resolve(DatabaseConnection);
+// const connection = DatabaseConnection
 // console.log(connection);
 
 // connection.closeConnection();
-

@@ -1,19 +1,20 @@
 import { inject, injectable } from "tsyringe";
 import { User } from "../entity/User";
-import { DatabaseConnectionInterfase } from "../interfaces/databaseConnection.interfase";
+import { UserRepositoryInterface, DatabaseConnectionInterface } from "../interfaces";
 
 @injectable()
-export class UserRepository {
+export class UserRepository implements UserRepositoryInterface {
 
-  constructor(@inject("databaseConnection") private dataBaseConnection: DatabaseConnectionInterfase)
+
+  constructor(@inject("DatabaseConnection") private dataBaseConnection: DatabaseConnectionInterface)
   {};
 
-  async list() {
+  async list(): Promise<User[]> {
 
     const connection = await this.dataBaseConnection.getConnection()
     const repository = connection.getRepository(User)
 
     return await repository.find();
   }
-  
+ 
 }

@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import { injectable } from "tsyringe";
-import { IUser, UserService } from "../interfaces";
+import { IUser,UserInternetServiceInterface } from "../interfaces";
 
 @injectable()
-export class UserInternetService implements UserService {
+export class UserInternetService implements UserInternetServiceInterface {
   private users: IUser[];
   private url: string;
 

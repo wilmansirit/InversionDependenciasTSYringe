@@ -1,9 +1,9 @@
 import { promises as fs } from "fs";
 import { injectable } from "tsyringe";
-import { IUser, UserService } from "../interfaces";
+import { IUser, UserLocalServiceInterface} from "../interfaces";
 
 @injectable()
-export class UserLocalService implements UserService {
+export class UserLocalService implements UserLocalServiceInterface {
   users: IUser[];
   usersFile: string;
 

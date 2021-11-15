@@ -1,15 +1,15 @@
 import { inject, singleton } from "tsyringe";
 import { Connection, ConnectionOptions, createConnection } from "typeorm";
-import { DatabaseConnectionInterfase } from "../interfaces";
+import { DatabaseConnectionInterface } from "../interfaces";
 
 @singleton()
-export class DatabaseConnection implements DatabaseConnectionInterfase {
+export default class DatabaseConnection implements DatabaseConnectionInterface {
   // Declaration
   connection: Connection;
 
 
   constructor(
-    @inject("databaseConfiguration")
+    @inject("DatabaseConfiguration")
     private databaseConfiguraction: ConnectionOptions
   ) {}
 
